@@ -14,7 +14,7 @@ pipeline {
         stage('post build') {
             steps {
                 junit 'openmrs-web/target/surefire-reports/*.xml'
-                archiveArtifacts 'openmrs-web/target/*.war'
+                archiveArtifacts 'openmrs-web/target/*.jar'
             }
         }
     }
