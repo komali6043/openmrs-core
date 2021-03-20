@@ -1,0 +1,20 @@
+pipeline {
+    agent { label 'master'}
+    stages {
+        stage('scm') {
+            steps {
+                git 'https://github.com/openmrs/openmrs-core.git'        
+            }
+        },
+        stage('build') {
+            steps {
+                sh script: 'mvn clean package'
+            }
+        }
+        stage('post build') {
+            steps {
+                junit 'openmrs-web/target/surefire-reports/*.xml'
+                archiveArtifacts 'openmrs-web/target/*.war'
+            }
+        }
+    }
