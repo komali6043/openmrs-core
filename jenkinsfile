@@ -14,7 +14,7 @@ pipeline {
         stage('post build') {
             steps {
                 junit 'web/target/surefire-reports/*.xml'
-                archiveArtifacts 'web/target/*.war'
+                archiveArtifacts 'webapp/target/*.war'
             }
         }
     }
